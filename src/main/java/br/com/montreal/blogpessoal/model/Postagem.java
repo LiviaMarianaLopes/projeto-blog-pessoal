@@ -1,5 +1,6 @@
 package br.com.montreal.blogpessoal.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -20,15 +21,16 @@ public class Postagem {
     @Column(columnDefinition = "TEXT")
     private String texto;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime data = LocalDateTime.now();
 
     @NotNull(message="O id do tema não pode ser null")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tema_id")
     private Tema tema;
 
     @NotNull(message="O id do usuario não pode ser null")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 

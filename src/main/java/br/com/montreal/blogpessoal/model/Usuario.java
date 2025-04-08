@@ -1,5 +1,6 @@
 package br.com.montreal.blogpessoal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
@@ -20,6 +21,7 @@ public class Usuario {
     private String foto;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Collection<Postagem> postagens;
 
     public Usuario(Long id, String nome, String usuario, String senha, String foto, Collection<Postagem> postagens) {

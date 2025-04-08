@@ -1,5 +1,6 @@
 package br.com.montreal.blogpessoal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import java.util.Collection;
@@ -15,6 +16,7 @@ public class Tema {
     private String descricao;
 
     @OneToMany(mappedBy = "tema", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Collection<Postagem> postagens;
 
     public Tema() {
