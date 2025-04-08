@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 public record AuthDTO(
         @Email(message = "O email deve ser válido")
         @NotBlank(message = "O email não pode estar vazio")
-        String email,
+        String usuario,
 
         @NotBlank(message = "A senha não pode estar vazia")
         String senha) {}

@@ -25,8 +25,7 @@ public class UsuarioService {
     }
 
     public Usuario cadastrarUsuario(@Valid Usuario usuarioRequest) {
-        Optional<Usuario> usuarioCadastrado = usuarioRepository.findByUsuario(usuarioRequest.getUsuario());
-        if(usuarioCadastrado.isPresent()) {
+        if(usuarioRepository.findByUsuario(usuarioRequest.getUsuario()) != null) {
             throw new RuntimeException("Este email já foi cadastrado");
         }
         return usuarioRepository.save(usuarioRequest);
