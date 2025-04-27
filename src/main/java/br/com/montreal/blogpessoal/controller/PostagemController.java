@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/api/postagens")
@@ -64,6 +65,17 @@ public class PostagemController {
 
         List<Postagem> postagensFiltradas = postagemService.filtrarPorAutorETema(autor, tema);
         return ResponseEntity.ok(postagensFiltradas);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Postagem>> buscarPorId(@PathVariable Long id) {
+        Optional<Postagem> postagem = Optional.ofNullable(postagemService.buscarPostagem(id));
+        if (postagem.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+        }
+        return new ResponseEntity<>(postagem, HttpStatus.OK);
+
     }
 
 }

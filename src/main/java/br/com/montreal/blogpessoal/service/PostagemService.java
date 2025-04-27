@@ -54,4 +54,9 @@ public class PostagemService {
         return postagemRepository.filtrarPorAutorETema(autorId, temaId);
     }
 
+    public Optional<Postagem> buscarPorId(Long id) {
+        Optional<Postagem> postagem = postagemRepository.findById(id);
+        return postagem;
+    }
+
 }
